@@ -129,30 +129,6 @@ body {
     color: var(--accent);
 }
 
-/* ========== EMPLACEMENTS PUBLICITAIRES ========== */
-.ad-slot {
-    background-color: var(--bg-tertiary);
-    border: 1px dashed var(--border);
-    border-radius: var(--radius);
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1.5rem 0;
-    overflow: hidden;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
-.ad-top, .ad-bottom {
-    min-height: 100px;
-}
-
-.ad-inline {
-    margin: 2rem 0;
-    min-height: 120px;
-}
-
 /* ========== CALCULATOR SECTION ========== */
 .calculator-section {
     padding: 2.5rem 0;
@@ -388,10 +364,6 @@ body {
     
     .bmi-value {
         font-size: 2.75rem;
-    }
-    
-    .ad-slot {
-        min-height: 60px;
     }
 }
 
