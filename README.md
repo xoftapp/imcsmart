@@ -9,7 +9,7 @@
 - 📱 **Responsive** : Design optimisé pour mobile, tablette et ordinateur.
 - 🏥 **Conseils OMS** : Recommandations de santé adaptées à chaque catégorie d'IMC, incluant une note physiologique intelligente sur les différences de composition corporelle.
 - ⚡ **Performance** : 100% Vanilla JS, HTML et CSS. Aucune dépendance externe lourde.
-- 💼 **Monétisation** : Structure prête pour l'intégration de 3 emplacements Google AdSense.
+- 🛡️ **Respect de la vie privée** : Aucun suivi, aucun cookie publicitaire, tous les calculs sont effectués localement dans le navigateur.
 
 ## 🚀 Déploiement sur GitHub Pages
 
@@ -19,12 +19,6 @@
 4. Allez dans **Settings** > **Pages**.
 5. Sous **Build and deployment**, sélectionnez `Deploy from a branch`, choisissez la branche `main` et le dossier `/ (root)`.
 6. Cliquez sur **Save**. Votre site sera en ligne en quelques minutes.
-
-## ⚙️ Configuration Google AdSense
-
-Avant de publier, remplacez les valeurs suivantes dans `index.html` :
-- `ca-pub-XXXXXXXXXXXXXXXX` par votre identifiant éditeur AdSense.
-- `1111111111`, `2222222222`, `3333333333` par les identifiants de vos blocs d'annonces respectifs.
 
 ## ⚠️ Avertissement Médical
 
