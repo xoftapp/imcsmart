@@ -1,188 +1,384 @@
-/* ========== DICTIONNAIRE DE TRADUCTIONS ========== */
-const translations = {
-    fr: {
-        pageTitle: "IMC SMART — Calculateur Intelligent d'Indice de Masse Corporelle",
-        siteName: "IMC SMART",
-        mainTitle: "Calculez votre Indice de Masse Corporelle",
-        mainSubtitle: "Obtenez instantanément une évaluation de votre corpulence et des conseils santé intelligents et personnalisés basés sur les recommandations de l'OMS.",
-        weightLabel: "Poids (kg)",
-        heightLabel: "Taille (cm)",
-        weightError: "Veuillez entrer un poids valide (1 à 500 kg).",
-        heightError: "Veuillez entrer une taille valide (50 à 250 cm).",
-        calculateBtn: "Calculer mon IMC",
-        bmiLabel: "Votre IMC",
-        aboutTitle: "À propos de l'IMC",
-        aboutText: "L'Indice de Masse Corporelle est un indicateur largement utilisé par l'Organisation Mondiale de la Santé pour évaluer la corpulence d'une personne adulte. Il constitue un outil de dépistage et ne remplace pas un avis médical professionnel.",
-        disclaimer: "⚠️ Avertissement : Ce calculateur est fourni à titre informatif uniquement. Il ne constitue pas un avis médical. L'IMC ne prend pas en compte la masse musculaire, la densité osseuse ou la répartition des graisses. Consultez un professionnel de santé qualifié pour toute décision concernant votre santé.",
-        footerText: "Tous droits réservés.",
-        adviceTitle: "Conseils santé",
-        categories: {
-            underweight: { title: "Insuffisance pondérale", advice: "Il est recommandé de consulter un médecin ou un nutritionniste. Veillez à un apport calorique et nutritionnel suffisant et équilibré. Une prise de poids progressive sous supervision professionnelle peut être nécessaire." },
-            normal: { title: "Poids normal", advice: "Félicitations, votre poids est dans la plage idéale. Maintenez une alimentation équilibrée, pratiquez une activité physique régulière (au moins 150 minutes par semaine) et assurez-vous de bien vous hydrater." },
-            overweight: { title: "Surpoids", advice: "Il est conseillé de réévaluer vos habitudes alimentaires et d'augmenter votre activité physique quotidienne. Consultez un professionnel de santé pour obtenir des recommandations personnalisées et prévenir les risques cardiovasculaires." },
-            obesity1: { title: "Obésité modérée (Classe I)", advice: "Un suivi médical est fortement recommandé. Une prise en charge globale incluant des conseils nutritionnels, un programme d'exercice adapté et un soutien psychologique si nécessaire, vous aidera à atteindre vos objectifs de santé." },
-            obesity2: { title: "Obésité sévère (Classe II)", advice: "Consultez un médecin spécialiste. Un accompagnement multidisciplinaire (médecin, diététicien, psychologue, kinésithérapeute) est indispensable pour élaborer un plan de traitement sécurisé et efficace." },
-            obesity3: { title: "Obésité morbide (Classe III)", advice: "Une consultation médicale spécialisée est urgente. Des options thérapeutiques avancées, incluant des traitements médicaux spécifiques ou une évaluation pour une chirurgie bariatrique, doivent être discutées avec votre équipe médicale." }
-        }
-    },
-    en: {
-        pageTitle: "IMC SMART — Smart Body Mass Index Calculator",
-        siteName: "IMC SMART",
-        mainTitle: "Calculate your Body Mass Index",
-        mainSubtitle: "Instantly assess your body composition and receive smart, personalized health advice based on WHO recommendations.",
-        weightLabel: "Weight (kg)",
-        heightLabel: "Height (cm)",
-        weightError: "Please enter a valid weight (1 to 500 kg).",
-        heightError: "Please enter a valid height (50 to 250 cm).",
-        calculateBtn: "Calculate my BMI",
-        bmiLabel: "Your BMI",
-        aboutTitle: "About BMI",
-        aboutText: "The Body Mass Index is a widely used indicator by the World Health Organization to assess the body composition of adults. It serves as a screening tool and does not replace professional medical advice.",
-        disclaimer: "⚠️ Disclaimer: This calculator is provided for informational purposes only. It does not constitute medical advice. BMI does not account for muscle mass, bone density, or fat distribution. Always consult a qualified healthcare professional for any health-related decisions.",
-        footerText: "All rights reserved.",
-        adviceTitle: "Health advice",
-        categories: {
-            underweight: { title: "Underweight", advice: "It is recommended to consult a doctor or a dietitian. Ensure adequate and balanced caloric and nutritional intake. Gradual weight gain under professional supervision may be necessary." },
-            normal: { title: "Normal weight", advice: "Congratulations, your weight is in the ideal range. Maintain a balanced diet, engage in regular physical activity (at least 150 minutes per week), and ensure you stay properly hydrated." },
-            overweight: { title: "Overweight", advice: "It is advisable to reassess your dietary habits and increase your daily physical activity. Consult a healthcare professional for personalized recommendations and to prevent cardiovascular risks." },
-            obesity1: { title: "Moderate obesity (Class I)", advice: "Medical follow-up is highly recommended. A comprehensive approach including nutritional counseling, an adapted exercise program, and psychological support if necessary, will help you achieve your health goals." },
-            obesity2: { title: "Severe obesity (Class II)", advice: "Consult a medical specialist. Multidisciplinary support (doctor, dietitian, psychologist, physical therapist) is essential to develop a safe and effective treatment plan." },
-            obesity3: { title: "Morbid obesity (Class III)", advice: "An urgent specialized medical consultation is required. Advanced therapeutic options, including specific medical treatments or an evaluation for bariatric surgery, must be discussed with your medical team." }
-        }
+/* ========== VARIABLES ET THÈMES ========== */
+:root,
+[data-theme="light"] {
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #eef2f7;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-light: #dbeafe;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
+    --radius: 12px;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --accent-light: #1e3a8a;
+    --border: #334155;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ========== RESET ET BASE ========== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* ========== HEADER ========== */
+.site-header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.35rem;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+    color: var(--accent);
+}
+
+.logo-imc {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.logo-smart {
+    color: var(--accent);
+    font-weight: 800;
+    margin-left: 0.2rem;
+}
+
+.header-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control-btn {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background-color: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ========== CALCULATOR SECTION ========== */
+.calculator-section {
+    padding: 2.5rem 0;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.intro h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.intro p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.calculator-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.form-group input.invalid {
+    border-color: var(--danger);
+}
+
+.input-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+    display: none;
+    font-weight: 500;
+}
+
+.input-error.visible {
+    display: block;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* ========== RÉSULTATS ========== */
+.result-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.4s ease;
+}
+
+.result-container.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.bmi-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.bmi-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bmi-category {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.category-underweight { background: #fef3c7; color: #92400e; }
+.category-normal { background: #d1fae5; color: #065f46; }
+.category-overweight { background: #fed7aa; color: #9a3412; }
+.category-obesity-1 { background: #fecaca; color: #991b1b; }
+.category-obesity-2 { background: #fca5a5; color: #7f1d1d; }
+.category-obesity-3 { background: #991b1b; color: white; }
+
+[data-theme="dark"] .category-underweight { background: #78350f; color: #fde68a; }
+[data-theme="dark"] .category-normal { background: #064e3b; color: #a7f3d0; }
+[data-theme="dark"] .category-overweight { background: #7c2d12; color: #fed7aa; }
+[data-theme="dark"] .category-obesity-1 { background: #7f1d1d; color: #fecaca; }
+[data-theme="dark"] .category-obesity-2 { background: #581c87; color: #f5d0fe; }
+[data-theme="dark"] .category-obesity-3 { background: #450a0a; color: white; }
+
+.advice-box {
+    background-color: var(--bg-tertiary);
+    border-left: 4px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.advice-box h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.advice-box p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ========== INFO & DISCLAIMER ========== */
+.info-section {
+    padding: 2rem 0;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.info-section p {
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 1.7;
+}
+
+.disclaimer {
+    background-color: var(--accent-light);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+    .calculator-card {
+        padding: 1.25rem;
     }
-};
-
-/* ========== ÉTAT GLOBAL ========== */
-let currentLang = localStorage.getItem('imc-smart-lang') || 'fr';
-let currentTheme = localStorage.getItem('imc-smart-theme') || 'light';
-
-/* ========== FONCTIONS DE TRADUCTION ========== */
-function t(key) {
-    const keys = key.split('.');
-    let value = translations[currentLang];
-    for (const k of keys) {
-        value = value?.[k];
-    }
-    return value || key;
-}
-
-function applyTranslations() {
-    document.documentElement.lang = currentLang;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const translation = t(key);
-        if (typeof translation === 'string') {
-            el.textContent = translation;
-        }
-    });
-    document.getElementById('langLabel').textContent = currentLang === 'fr' ? 'EN' : 'FR';
-    document.title = t('pageTitle');
-}
-
-/* ========== GESTION DU THÈME ========== */
-function applyTheme() {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    document.getElementById('themeIcon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
-}
-
-function toggleTheme() {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('imc-smart-theme', currentTheme);
-    applyTheme();
-}
-
-/* ========== GESTION DE LA LANGUE ========== */
-function toggleLanguage() {
-    currentLang = currentLang === 'fr' ? 'en' : 'fr';
-    localStorage.setItem('imc-smart-lang', currentLang);
-    applyTranslations();
     
-    // Recalculer le résultat s'il est déjà affiché
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    if (!isNaN(weight) && !isNaN(height) && !document.getElementById('resultContainer').classList.contains('hidden')) {
-        calculateBMI(weight, height);
+    .bmi-value {
+        font-size: 2.75rem;
     }
 }
 
-/* ========== CLASSIFICATION ET CALCUL ========== */
-function getCategory(bmi) {
-    if (bmi < 18.5) return { key: 'underweight', class: 'category-underweight' };
-    if (bmi < 25) return { key: 'normal', class: 'category-normal' };
-    if (bmi < 30) return { key: 'overweight', class: 'category-overweight' };
-    if (bmi < 35) return { key: 'obesity1', class: 'category-obesity-1' };
-    if (bmi < 40) return { key: 'obesity2', class: 'category-obesity-2' };
-    return { key: 'obesity3', class: 'category-obesity-3' };
-}
-
-function calculateBMI(weight, heightCm) {
-    const heightM = heightCm / 100;
-    const bmi = weight / (heightM * heightM);
-    const category = getCategory(bmi);
-    const categoryData = t('categories.' + category.key);
-    
-    // Note pédagogique intelligente ajoutée dynamiquement
-    const smartNote = currentLang === 'fr' 
-        ? "<br><br><em><strong>Note physiologique :</strong> À IMC égal, la composition corporelle diffère naturellement entre les hommes (plus de masse musculaire en moyenne) et les femmes (pourcentage de masse grasse essentiellement plus élevé). Cet indicateur reste un outil de dépistage général.</em>"
-        : "<br><br><em><strong>Physiological note:</strong> At the same BMI, body composition naturally differs between men (higher average muscle mass) and women (naturally higher essential body fat percentage). This indicator remains a general screening tool.</em>";
-
-    const resultHTML = `
-        <div class="result-header">
-            <div class="bmi-value">${bmi.toFixed(1)}</div>
-            <div class="bmi-label">${t('bmiLabel')}</div>
-            <div class="bmi-category ${category.class}">${categoryData.title}</div>
-        </div>
-        <div class="advice-box">
-            <h3>${t('adviceTitle')}</h3>
-            <p>${categoryData.advice}${smartNote}</p>
-        </div>
-    `;
-    
-    const container = document.getElementById('resultContainer');
-    container.innerHTML = resultHTML;
-    container.classList.remove('hidden');
-    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-/* ========== VALIDATION ET SOUMISSION ========== */
-function validateInput(input, min, max) {
-    const value = parseFloat(input.value);
-    const errorEl = input.parentElement.querySelector('.input-error');
-    const isValid = !isNaN(value) && value >= min && value <= max;
-    
-    if (input.value !== '' && !isValid) {
-        input.classList.add('invalid');
-        errorEl.classList.add('visible');
-    } else {
-        input.classList.remove('invalid');
-        errorEl.classList.remove('visible');
+@media (max-width: 480px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 0.75rem;
     }
     
-    return isValid;
+    .control-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
 }
-
-/* ========== INITIALISATION ========== */
-document.addEventListener('DOMContentLoaded', () => {
-    applyTheme();
-    applyTranslations();
-    
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    document.getElementById('langToggle').addEventListener('click', toggleLanguage);
-    
-    const weightInput = document.getElementById('weight');
-    const heightInput = document.getElementById('height');
-    
-    weightInput.addEventListener('input', () => validateInput(weightInput, 1, 500));
-    heightInput.addEventListener('input', () => validateInput(heightInput, 50, 250));
-    
-    document.getElementById('bmiForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const weightValid = validateInput(weightInput, 1, 500);
-        const heightValid = validateInput(heightInput, 50, 250);
-        
-        if (!weightValid || !heightValid) return;
-        
-        calculateBMI(parseFloat(weightInput.value), parseFloat(heightInput.value));
-    });
-});
