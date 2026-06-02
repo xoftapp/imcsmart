@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IMC SMART : Calculateur intelligent d'Indice de Masse Corporelle avec conseils santé personnalisés basés sur les recommandations de l'OMS.">
+    <meta name="keywords" content="IMC, BMI, calculateur, calculator, santé, health, poids, weight, IMC SMART">
+    
+    <!-- Open Graph pour les réseaux sociaux -->
+    <meta property="og:title" content="IMC SMART — Calculateur Intelligent d'IMC">
+    <meta property="og:description" content="Calculez votre IMC et obtenez des conseils santé personnalisés basés sur les recommandations de l'OMS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://VOTRE-NOM.github.io/imc-smart/">
+    
+    <title data-i18n="pageTitle">IMC SMART — Calculateur Intelligent d'Indice de Masse Corporelle</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Google AdSense (Remplacez ca-pub-XXXXXXXXXXXXXXXX par votre identifiant) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">⚕</span>
+                <span class="logo-text">
+                    <span class="logo-imc">IMC</span>
+                    <span class="logo-smart">SMART</span>
+                </span>
+            </div>
+            <div class="header-controls">
+                <button id="langToggle" class="control-btn" aria-label="Changer de langue / Change language">
+                    <span id="langLabel">EN</span>
+                </button>
+                <button id="themeToggle" class="control-btn" aria-label="Changer de thème / Change theme">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- EMPLACEMENT PUBLICITAIRE 1 : Bannière haute -->
+        <section class="ad-slot ad-top">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1111111111"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </section>
+
+        <section class="calculator-section">
+            <div class="intro">
+                <h1 data-i18n="mainTitle">Calculez votre Indice de Masse Corporelle</h1>
+                <p data-i18n="mainSubtitle">Obtenez instantanément une évaluation de votre corpulence et des conseils santé intelligents et personnalisés basés sur les recommandations de l'OMS.</p>
+            </div>
+
+            <div class="calculator-card">
+                <form id="bmiForm" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="weight" data-i18n="weightLabel">Poids (kg)</label>
+                            <input type="number" id="weight" name="weight" min="1" max="500" step="0.1" required placeholder="70">
+                            <span class="input-error" data-i18n="weightError">Veuillez entrer un poids valide (1 à 500 kg).</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="height" data-i18n="heightLabel">Taille (cm)</label>
+                            <input type="number" id="height" name="height" min="50" max="250" step="0.1" required placeholder="175">
+                            <span class="input-error" data-i18n="heightError">Veuillez entrer une taille valide (50 à 250 cm).</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary" data-i18n="calculateBtn">Calculer mon IMC</button>
+                </form>
+
+                <!-- EMPLACEMENT PUBLICITAIRE 2 : Intercalé -->
+                <div class="ad-slot ad-inline">
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="2222222222"
+                         data-ad-format="fluid"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+
+                <div id="resultContainer" class="result-container hidden" aria-live="polite">
+                    <!-- Les résultats seront injectés ici par JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2 data-i18n="aboutTitle">À propos de l'IMC</h2>
+            <p data-i18n="aboutText">L'Indice de Masse Corporelle est un indicateur largement utilisé par l'Organisation Mondiale de la Santé pour évaluer la corpulence d'une personne adulte. Il constitue un outil de dépistage et ne remplace pas un avis médical professionnel.</p>
+        </section>
+
+        <!-- EMPLACEMENT PUBLICITAIRE 3 : Bannière basse -->
+        <section class="ad-slot ad-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="3333333333"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </section>
+
+        <!-- Disclaimer légal -->
+        <aside class="disclaimer">
+            <p data-i18n="disclaimer">⚠️ Avertissement : Ce calculateur est fourni à titre informatif uniquement. Il ne constitue pas un avis médical. L'IMC ne prend pas en compte la masse musculaire, la densité osseuse ou la répartition des graisses. Consultez un professionnel de santé qualifié pour toute décision concernant votre santé.</p>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 IMC SMART — <span data-i18n="footerText">Tous droits réservés.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
